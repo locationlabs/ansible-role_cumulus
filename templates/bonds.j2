@@ -1,0 +1,20 @@
+{% for key, bond in config.bonds.iteritems() %}
+auto {{ key }}
+iface {{ key }}
+    alias {{ bond.alias_name }}
+{% if bond.address is defined %}
+    address {{ bond.address }}
+{% endif %}
+    bond-slaves {{ bond.slaves|join(' ') }}
+{% if bond.clag_id is defined %}
+    clag-id {{ bond.clag_id }}
+{% endif %}
+    mstpctl-portadminedge {{ bond.mstpctl_portadminedge|default('no') }}
+    mstpctl-bpduguard {{ bond.mstpctl_bpduguard|default('no') }}
+    mstpctl-portnetwork {{ bond.mstpctl_portnetwork|default('no') }}
+    bond-miimon 100
+    bond-lacp-rate 1
+    bond-min-links 1
+    bond-mode 802.3ad
+    bond-xmit-hash-policy layer3+4
+{% endfor %}

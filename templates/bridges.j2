@@ -1,0 +1,11 @@
+{% for key, bridge in config.bridges.iteritems() %}
+auto {{ key }}
+iface {{ key }}
+    alias {{ bridge.alias_name }}
+{% if bridge.address is defined %}
+    address {{ bridge.address }}
+{% endif %}
+    bridge-ports {{ bridge.ports|join(' ') }}
+    bridge-vlan-aware {{ bridge.vlan_aware|default('yes') }}
+    bridge-stp {{ bridge.stp|default('yes') }}
+{% endfor %}

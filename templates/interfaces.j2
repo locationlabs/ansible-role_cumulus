@@ -1,0 +1,25 @@
+{% for key, iface in config.interfaces.iteritems() %}
+auto {{ key }}
+{% if iface.addr_method is defined %}
+iface {{ key }} inet {{ iface.addr_method }}
+{% else %}
+iface {{ key }}
+{% endif %}
+{% if iface.address is defined %}
+    address {{ iface.address }}
+{% endif %}
+    alias {{ iface.alias_name }}
+    mstpctl-portadminedge {{ iface.mstpctl_portadminedge|default('no') }}
+    mstpctl-bpduguard {{ iface.mstpctl_bpduguard|default('no') }}
+    mstpctl-portnetwork {{ iface.mstpctl_portnetwork|default('no') }}
+{% if iface.clagd_enable is defined %}
+    clagd-enable yes
+    clagd-peer-ip {{ iface.clagd_peer_ip }}
+    clagd-backup-ip {{ iface.clagd_backup_ip }}
+    clagd-sys-mac {{ iface.clagd_sys_mac }}
+    clagd_priority {{ iface.clagd_priority }}
+{% if iface.clagd_args is defined %}
+    clagd-args {{ iface.clagd_args }}
+{% endif %}
+{% endif %}
+{% endfor %}

@@ -1,0 +1,18 @@
+- name: Write configuration fragments
+  template:
+    src="{{ item.name }}.j2"
+    dest="/etc/network/interfaces.d/{{ item.order }}-{{ item.name }}.fragment"
+  with_items:
+    - { name: 'header', order: '00' }
+    - { name: 'interfaces', order: '10' }
+    - { name: 'bonds', order: '20' }
+    - { name: 'bridges', order: '30' }
+
+- name: Assemble configuration fragments into /etc/network/interfaces
+  assemble:
+    src=/etc/network/interfaces.d
+    dest=/etc/network/interfaces
+    regexp='.*fragment'
+    backup=yes
+    # validate='/sbin/ifquery --check -a -i %s'
+  notify: reload networking

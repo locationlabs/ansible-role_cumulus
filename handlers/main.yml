@@ -1,0 +1,2 @@
+- name: reload networking
+  command: /sbin/ifreload -a
