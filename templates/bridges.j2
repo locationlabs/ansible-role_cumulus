@@ -7,6 +7,12 @@ iface {{ key }}
 {% endif %}
     bridge-ports {{ bridge.ports|join(' ') }}
     bridge-vlan-aware {{ bridge.vlan_aware|default('yes') }}
+{% if bridge.bridge_pvid is defined %}
+    bridge-pvid {{ bridge.bridge_pvid }}
+{% endif %}
+{% if bridge.bridge_vids is defined %}
+    bridge-vids {{ bridge.bridge_vids|join(' ') }}
+{% endif %}
     bridge-stp {{ bridge.stp|default('yes') }}
 
 {% endfor %}
