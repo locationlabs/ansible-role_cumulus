@@ -8,4 +8,5 @@ iface {{ key }}
     bridge-ports {{ bridge.ports|join(' ') }}
     bridge-vlan-aware {{ bridge.vlan_aware|default('yes') }}
     bridge-stp {{ bridge.stp|default('yes') }}
+
 {% endfor %}
