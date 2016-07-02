@@ -8,7 +8,7 @@ iface {{ key }} {%- if iface.addr_method is defined %}
     address {{ iface.address }}
 {% endif %}
     alias {{ iface.alias_name }}
-{% if not key|search('\.') %}
+{% if '.' not in key %}
     mstpctl-portadminedge {{ iface.mstpctl_portadminedge|default('no') }}
     mstpctl-bpduguard {{ iface.mstpctl_bpduguard|default('no') }}
     mstpctl-portnetwork {{ iface.mstpctl_portnetwork|default('no') }}
