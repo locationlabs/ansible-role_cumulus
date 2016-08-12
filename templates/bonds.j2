@@ -5,6 +5,9 @@ iface {{ key }}
 {% if bond.address is defined %}
     address {{ bond.address }}
 {% endif %}
+{% if iface.bridge_vids is defined %}
+    bridge-vids {{ iface.bridge_pvid|join(' ') }}
+{% endif %}
     bond-slaves {{ bond.slaves|join(' ') }}
 {% if bond.clag_id is defined %}
     clag-id {{ bond.clag_id }}
