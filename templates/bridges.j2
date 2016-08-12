@@ -14,5 +14,8 @@ iface {{ key }}
     bridge-vids {{ bridge.bridge_vids|join(' ') }}
 {% endif %}
     bridge-stp {{ bridge.stp|default('yes') }}
+{% if bridge.mstpctl_treeprio is defined %}
+    mstpctl-treeprio {{ bridge.mstpctl_treeprio }}
+{% endif %}
 
 {% endfor %}
