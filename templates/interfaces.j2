@@ -35,5 +35,10 @@ iface {{ key }} {%- if iface.addr_method is defined %}
     clagd-args {{ iface.clagd_args }}
 {% endif %}
 {% endif %}
+{% if iface.link is defined %}
+{% for link_item, link_value in iface.link.iteritems() %}
+    link-{{ link_item }} {{ link_value }}
+{% endfor %}
+{% endif %}
 
 {% endfor %}
