@@ -18,7 +18,7 @@ iface {{ key }} {%- if iface.addr_method is defined %}
     bridge-pvid {{ iface.bridge_pvid }}
 {% endif %}
 {% if iface.bridge_vids is defined %}
-    bridge-vids {{ iface.bridge_pvid|join(' ') }}
+    bridge-vids {{ iface.bridge_vids|join(' ') }}
 {% endif %}
 {% if iface.bridge_allow_untagged is defined %}
     bridge-allow-untagged {{ iface.bridge_allow_untagged }}
