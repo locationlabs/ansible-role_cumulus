@@ -8,6 +8,9 @@ iface {{ key }}
 {% if bond.bridge_vids is defined %}
     bridge-vids {{ bond.bridge_vids|join(' ') }}
 {% endif %}
+{% if bond.bridge_pvid is defined %}
+    bridge-pvid {{ bond.bridge_pvid }}
+{% endif %}
     bond-slaves {{ bond.slaves|join(' ') }}
 {% if bond.clag_id is defined %}
     clag-id {{ bond.clag_id }}
