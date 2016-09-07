@@ -12,7 +12,7 @@ iface {{ key }} {%- if iface.addr_method is defined %}
     mstpctl-portadminedge {{ iface.mstpctl_portadminedge|default('no') }}
     mstpctl-bpduguard {{ iface.mstpctl_bpduguard|default('no') }}
     mstpctl-portnetwork {{ iface.mstpctl_portnetwork|default('no') }}
-    mstpctl-bpdufilter {{ iface.mstpctl_bpdufilter|default('no') }}
+    mstpctl-portbpdufilter {{ iface.mstpctl_bpdufilter|default('no') }}
 {% endif %}
 {% if iface.bridge_pvid is defined %}
     bridge-pvid {{ iface.bridge_pvid }}
