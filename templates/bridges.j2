@@ -13,9 +13,20 @@ iface {{ key }}
 {% if bridge.bridge_vids is defined %}
     bridge-vids {{ bridge.bridge_vids|join(' ') }}
 {% endif %}
-    bridge-stp {{ bridge.stp|default('yes') }}
+    bridge-stp {{ bridge.stp|default('on') }}
 {% if bridge.mstpctl_treeprio is defined %}
     mstpctl-treeprio {{ bridge.mstpctl_treeprio }}
+{% endif %}
+{% if bridge.bridge_mcquerier is defined %}
+    bridge-mcquerier {{ bridge.bridge_mcquerier|default('1') }}
+{% endif %}
+
+{% if bridge.bridge_igmp is defined %}
+{% for item in bridge.igmp %}
+auto {{ key }}.{{ item.vlan }}
+vlan {{ key }}.{{ item.vlan }}
+    bridge-igmp-querier-src {{ item.querier_src }}
+{% endfor %}
 {% endif %}
 
 {% endfor %}
