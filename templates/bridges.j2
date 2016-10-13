@@ -17,11 +17,14 @@ iface {{ key }}
 {% if bridge.mstpctl_treeprio is defined %}
     mstpctl-treeprio {{ bridge.mstpctl_treeprio }}
 {% endif %}
+{% if bridge.bridge_mcsnoop is defined %}
+    bridge-mcsnoop {{ bridge.bridge_mcsnoop|default('1') }}
+{% endif %}
 {% if bridge.bridge_mcquerier is defined %}
     bridge-mcquerier {{ bridge.bridge_mcquerier|default('1') }}
 {% endif %}
 
-{% if bridge.bridge_igmp is defined %}
+{% if bridge.igmp is defined %}
 {% for item in bridge.igmp %}
 auto {{ key }}.{{ item.vlan }}
 vlan {{ key }}.{{ item.vlan }}
