@@ -1,4 +1,4 @@
-{% for key, bond in config.bonds.iteritems() %}
+{% for key, bond in config.bonds|dictsort %}
 auto {{ key }}
 iface {{ key }}
     alias {{ bond.alias_name }}

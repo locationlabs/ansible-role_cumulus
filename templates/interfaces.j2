@@ -1,4 +1,4 @@
-{% for key, iface in config.interfaces.iteritems() %}
+{% for key, iface in config.interfaces|dictsort %}
 auto {{ key }}
 iface {{ key }} {%- if iface.addr_method is defined %}
  inet {{ iface.addr_method }}
@@ -37,7 +37,7 @@ iface {{ key }} {%- if iface.addr_method is defined %}
 {% endif %}
 {% endif %}
 {% if iface.link is defined %}
-{% for link_item, link_value in iface.link.iteritems() %}
+{% for link_item, link_value in iface.link|dictsort %}
     link-{{ link_item }} {{ link_value }}
 {% endfor %}
 {% endif %}

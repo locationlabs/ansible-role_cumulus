@@ -1,4 +1,4 @@
-{% for key, bridge in config.bridges.iteritems() %}
+{% for key, bridge in config.bridges|dictsort %}
 auto {{ key }}
 iface {{ key }}
     alias {{ bridge.alias_name }}
