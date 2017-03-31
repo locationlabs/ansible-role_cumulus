@@ -1,3 +1,4 @@
+{% if 'bridges' in config %}
 {% for key, bridge in config.bridges|dictsort %}
 auto {{ key }}
 iface {{ key }}
@@ -33,3 +34,4 @@ vlan {{ key }}.{{ item.vlan }}
 {% endif %}
 
 {% endfor %}
+{% endif %}

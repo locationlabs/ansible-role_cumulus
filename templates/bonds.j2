@@ -1,3 +1,4 @@
+{% if 'bonds' in config %}
 {% for key, bond in config.bonds|dictsort %}
 auto {{ key }}
 iface {{ key }}
@@ -25,3 +26,4 @@ iface {{ key }}
     bond-xmit-hash-policy layer3+4
 
 {% endfor %}
+{% endif %}
