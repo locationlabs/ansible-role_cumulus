@@ -1,2 +1,5 @@
 - name: reload networking
   command: systemctl restart networking
+
+- name: restart switchd
+  command: systemctl restart switchd

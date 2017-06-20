@@ -1,0 +1,5 @@
+{% if 'ports' in config %}
+{% for port, breakout in config.bonds|dictsort %}
+{{ port }}={{ breakout }}
+{% endfor %}
+{% endif %}

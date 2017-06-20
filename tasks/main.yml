@@ -1,3 +1,10 @@
+- name: Configure breakout ports
+  template:
+    src=ports.conf.j2
+    dest=/etc/cumulus/ports.conf
+  notify: restart switchd
+  when: ansible_product_name in cumulus_breakout_allowed
+
 - name: Write configuration fragments
   template:
     src="{{ item.name }}.j2"
