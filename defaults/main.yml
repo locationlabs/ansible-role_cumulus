@@ -1,0 +1,17 @@
+cumulus_dos_enable: false
+cumulus_datapath_conf_file: "{{ cumulus_datapath_conf_file_bcm }}"
+cumulus_datapath_conf:
+  - { check: "sip_eq_dip", value: "true" }
+  - { check: "smac_eq_dmac", value: "true" }
+  - { check: "tcp_hdr_partial", value: "true" }
+  - { check: "tcp_syn_frag", value: "true" }
+  - { check: "tcp_ports_eq", value: "false" }
+  - { check: "tcp_flags_syn_fin", value: "true" }
+  - { check: "tcp_flags_fup_seq0", value: "true" }
+  - { check: "tcp_offset1", value: "true" }
+  - { check: "tcp_ctrl0_seq0", value: "true" }
+  - { check: "udp_ports_eq", value: "false" }
+  - { check: "icmp_frag", value: "true" }
+  - { check: "icmpv4_length", value: "true" }
+  - { check: "icmpv6_length", value: "true" }
+  - { check: "ipv6_min_frag", value: "true" }

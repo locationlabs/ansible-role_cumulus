@@ -1,0 +1,2 @@
+cumulus_datapath_conf_file_bcm: "/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf"
+cumulus_datapath_conf_file_mel: "/usr/lib/python2.7/dist-packages/cumulus/__chip_config/datapath.conf"

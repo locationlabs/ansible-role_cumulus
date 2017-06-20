@@ -1,3 +1,19 @@
+- name: Enable/Disable DOS protection
+  lineinfile:
+    dest: /etc/cumulus/datapath/traffic.conf
+    regexp: '^dos_enable'
+    line: "dos_enable = {{ cumulus_dos_enable|lower }}"
+  notify: restart switchd
+
+- name: Configure DOS protection
+  lineinfile:
+    dest: "{{ cumulus_datapath_conf_file }}"
+    regexp: "^dos.{{ item.check }}"
+    line: "dos.{{ item.check }} = {{ item.value }}"
+  with_items: "{{ cumulus_datapath_conf }}"
+  notify: restart switchd
+  when: cumulus_dos_enable
+
 - name: Write configuration fragments
   template:
     src="{{ item.name }}.j2"
