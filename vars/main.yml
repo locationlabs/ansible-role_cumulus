@@ -1,2 +1,12 @@
 cumulus_datapath_conf_file_bcm: "/usr/lib/python2.7/dist-packages/cumulus/__chip_config/bcm/datapath.conf"
 cumulus_datapath_conf_file_mel: "/usr/lib/python2.7/dist-packages/cumulus/__chip_config/datapath.conf"
+cumulus_breakout_allowed:
+  - 'Z9100'
+cumulus_breakout_values:
+  - 4x10G
+  - 4x25G
+  - 2x50G
+  - 40G
+  - 50G
+  - 100G
+  - disabled
