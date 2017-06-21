@@ -6,6 +6,7 @@ cumulus_breakout_values:
   - 4x10G
   - 4x25G
   - 2x50G
+  - 10G
   - 40G
   - 50G
   - 100G
