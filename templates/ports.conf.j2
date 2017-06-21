@@ -1,5 +1,8 @@
+# {{ ansible_managed }}
 {% if 'ports' in config %}
-{% for port, breakout in config.ports|dictsort %}
+{% for port, breakout in config.ports|dictsort if breakout in cumulus_breakout_values %}
 {{ port }}={{ breakout }}
+{% else %}
+{% 'Invalid breakout value' %}
 {% endfor %}
 {% endif %}

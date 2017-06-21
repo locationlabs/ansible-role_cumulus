@@ -1,2 +1,10 @@
 cumulus_breakout_allowed:
   - 'Z9100'
+cumulus_breakout_values:
+  - 4x10G
+  - 4x25G
+  - 2x50G
+  - 40G
+  - 50G
+  - 100G
+  - disabled
