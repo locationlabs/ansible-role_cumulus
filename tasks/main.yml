@@ -15,11 +15,13 @@
   when: cumulus_dos_enable
 
 - name: Configure breakout ports
-  template:
-    src=ports.conf.j2
-    dest=/etc/cumulus/ports.conf
+  lineinfile:
+    dest: /etc/cumulus/ports.conf
+    regexp: "^{{item.key}}"
+    line: "{{ item.key }}={{ item.value|validate_value(cumulus_breakout_values) }}"
+  with_dict: "{{ config.ports }}"
   notify: restart switchd
-  when: ansible_product_name in cumulus_breakout_allowed
+  when: ansible_product_name in cumulus_breakout_allowed and config.ports is defined
 
 - name: Write configuration fragments
   template:

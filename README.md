@@ -17,6 +17,8 @@ For more information, See [Configuring Hardware-enabled DDOS Protection](https:/
 
 **NOTE:** Changing these settings will cause `switchd` to restart, which will stop network traffic.
 
+**NOTE:** Beware, removing port from `config.ports` will result in leaving the previous config behind.
+
 100G switches allow you to breakout ports to 4x10G, 4x25G, etc with use of a breakout cable (or use
 a different speed than 100G). For example, this will take `swp1` and make `swp1sN`, where N is 0 to
 4 or 2, depending on which breakout type configured.
