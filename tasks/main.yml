@@ -17,9 +17,9 @@
 - name: Configure breakout ports
   lineinfile:
     dest: /etc/cumulus/ports.conf
-    regexp: "^{{item.key}}"
+    regexp: "^{{item.key}}="
     line: "{{ item.key }}={{ item.value|validate_value(cumulus_breakout_values) }}"
-  with_dict: "{{ config.ports }}"
+  with_dict: "{{ config.ports|default({}) }}"
   notify: restart switchd
   when: ansible_product_name in cumulus_breakout_allowed and config.ports is defined
 
