@@ -26,6 +26,6 @@ iface {{ key }}
     bond-xmit-hash-policy layer3+4
 {% endfor %}
 {% endif %}
-{% if iface.mtu is defined %}
-    mtu {{ iface.mtu }}
+{% if bond.mtu is defined %}
+    mtu {{ bond.mtu }}
 {% endif %}
