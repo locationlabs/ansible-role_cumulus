@@ -41,5 +41,8 @@ iface {{ key }} {%- if iface.addr_method is defined %}
     link-{{ link_item }} {{ link_value }}
 {% endfor %}
 {% endif %}
+{% if iface.mtu is defined %}
+    mtu {{ iface.mtu }}
+{% endif %}
 
 {% endfor %}
