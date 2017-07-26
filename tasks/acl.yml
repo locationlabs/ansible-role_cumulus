@@ -1,0 +1,35 @@
+- name: Toggle non atomic update mode
+  lineinfile:
+    dest: /etc/cumulus/switchd.conf
+    regexp: "^acl.non_atomic_update_mode"
+    line: "acl.non_atomic_update_mode = {{ cumulus_acl_non_atomic_update_mode|upper }}"
+  notify: restart switchd
+
+- name: Discover ACL rules files
+  find:
+    path: /etc/cumulus/acl/policy.d
+    pattern: "*.rules"
+  register: rules_files
+
+- set_fact:
+    _rules_paths: "{{ rules_files.files | map(attribute='path') | list }}"
+
+- set_fact:
+    cumulus_acl_unconfigured_rules_files: "{{ rules_files | difference(cumulus_acl_whitelist_rules_files) | difference(cumulus_acl_configured_rules_files) }}"
+
+- name: Remove unconfigured ACL rules files
+  file:
+    path: "/etc/cumulus/acl/policy.d/{{ item }}"
+    state: absent
+  with_items:
+    - "{{ cumulus_acl_unconfigured_rules_files }}"
+  when: cumulus_acl_unconfigured_rules_files.0 is defined
+  notify: update acl
+
+- name: Install ACL rules
+  template:
+    src: rules.j2
+    dest: "/etc/cumulus/acl/policy.d/{{ item.key }}.rules"
+  with_dict:
+    - "{{ config.acl }}"
+  notify: update acl

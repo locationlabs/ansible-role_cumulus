@@ -1,5 +1,37 @@
 # cumulus
 
+## ACLs
+
+**NOTE:** Changing these settings will cause `switchd` to restart, which will stop network traffic
+**NOTE:** Depending on atomic mode, updating ACLs may interrupt network traffic
+
+* `cumulus_acl_non_atomic_update_mode`: Boolean - control non atomic update mode
+
+Configure ACL rules with the `acl` hash in `config`. Each rule set is written to it's own file, taking the key as the filename. The digits are important as they are used to control the order that the rules are loaded. **00** and **99** are reserved by Cumulus.
+
+Example:
+
+```yaml
+config:
+  acl:
+    10_some_rules:
+      variables:
+        - INGRESS = swp+
+        - INPUT_PORT_CHAIN = INPUT,FORWARD
+      iptables:
+        - -A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT
+      ip6tables:
+        - -A $INPUT_PORT_CHAIN --in-interface $INGRESS -p tcp --dport 80 -j ACCEPT
+      ebtables:
+        - -A INPUT -p IPv4 -j ACCEPT
+    20_more_rules:
+      ...
+```
+
+For more information, See [Netfilter - ACLs](https://docs.cumulusnetworks.com/display/DOCS/Netfilter+-+ACLs)
+
+_Inspired by [mikegleasonjr/ansible-role-firewall](https://github.com/mikegleasonjr/ansible-role-firewall)_
+
 ## DOS Protection
 
 **NOTE:** Changing these settings will cause `switchd` to restart, which will stop network traffic.

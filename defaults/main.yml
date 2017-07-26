@@ -15,3 +15,4 @@ cumulus_datapath_conf:
   - { check: "icmpv4_length", value: "true" }
   - { check: "icmpv6_length", value: "true" }
   - { check: "ipv6_min_frag", value: "true" }
+cumulus_acl_non_atomic_update_mode: false

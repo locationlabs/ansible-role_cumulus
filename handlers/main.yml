@@ -3,3 +3,6 @@
 
 - name: restart switchd
   command: systemctl restart switchd
+
+- name: update acl
+  command: /usr/cumulus/bin/cl-acltool -i

@@ -23,6 +23,8 @@
   notify: restart switchd
   when: ansible_product_name in cumulus_breakout_allowed and config.ports is defined
 
+- include: acl.yml
+
 - name: Write configuration fragments
   template:
     src="{{ item.name }}.j2"
