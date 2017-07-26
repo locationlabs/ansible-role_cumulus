@@ -3,11 +3,14 @@
 ## ACLs
 
 **NOTE:** Changing these settings will cause `switchd` to restart, which will stop network traffic
+
 **NOTE:** Depending on atomic mode, updating ACLs may interrupt network traffic
 
 * `cumulus_acl_non_atomic_update_mode`: Boolean - control non atomic update mode
 
-Configure ACL rules with the `acl` hash in `config`. Each rule set is written to it's own file, taking the key as the filename. The digits are important as they are used to control the order that the rules are loaded. **00** and **99** are reserved by Cumulus.
+Configure ACL rules with the `acl` hash in `config`. Each rule set is written to it's own file,
+taking the key as the filename. The digits are important as they are used to control the order that
+the rules are loaded. **00** and **99** are reserved by Cumulus.
 
 Example:
 
