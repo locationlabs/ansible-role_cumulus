@@ -12,14 +12,14 @@
   register: rules_files
 
 - set_fact:
-    _rules_paths: "{{ rules_files.files | map(attribute='path') | list }}"
+    _rules_file_names: "{{ rules_files.files | map(attribute='path') | map('basename') | list }}"
 
 - set_fact:
-    cumulus_acl_unconfigured_rules_files: "{{ rules_files | difference(cumulus_acl_whitelist_rules_files) | difference(cumulus_acl_configured_rules_files) }}"
+    cumulus_acl_unconfigured_rules_files: "{{ _rules_file_names | difference(cumulus_acl_whitelist_rules_files) | difference(cumulus_acl_configured_rules_files) }}"
 
 - name: Remove unconfigured ACL rules files
   file:
-    path: "/etc/cumulus/acl/policy.d/{{ item }}"
+    path: "{{ item }}"
     state: absent
   with_items:
     - "{{ cumulus_acl_unconfigured_rules_files }}"
@@ -30,6 +30,6 @@
   template:
     src: rules.j2
     dest: "/etc/cumulus/acl/policy.d/{{ item.key }}.rules"
-  with_dict:
-    - "{{ config.acl }}"
+  with_dict: "{{ config.acl|default({}) }}"
   notify: update acl
+  when: config.acl is defined

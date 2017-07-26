@@ -14,4 +14,4 @@ cumulus_breakout_values:
 cumulus_acl_whitelist_rules_files:
   - 00control_plane.rules
   - 99control_plane_catch_all.rules
-cumulus_acl_configured_rules_files: "{{ config.acl.keys() | list }}"
+cumulus_acl_configured_rules_files: "{{ config.acl|default({})|list }}"

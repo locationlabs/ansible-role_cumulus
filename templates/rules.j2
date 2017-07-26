@@ -1,30 +1,28 @@
 # {{ ansible_managed }}
-{% if 'variables' in item.keys() %}
+{% if 'variables' in item.value %}
 # Variables
-{% for variable in item.value.variable %}
+{% for variable in item.value.variables %}
 {{ variable }}
 {% endfor %}
 {% endif %}
 
-{% if 'iptables' in item.keys() %}
+{% if 'iptables' in item.value %}
 [iptables]
 {% for iptable_rule in item.value.iptables %}
 {{ iptable_rule }}
 {% endfor %}
 {% endif %}
 
-{% if 'ip6tables' in item.keys() %}
+{% if 'ip6tables' in item.value %}
 [ip6tables]
 {% for ip6table_rule in item.value.ip6tables %}
 {{ ip6table_rule }}
 {% endfor %}
 {% endif %}
 
-{% if 'ebtables' in item.keys() %}
+{% if 'ebtables' in item.value %}
 [ebtables]
 {% for ebtable_rule in item.value.ebtables %}
 {{ ebtable_rule }}
 {% endfor %}
-{% endif %}
-
 {% endif %}
