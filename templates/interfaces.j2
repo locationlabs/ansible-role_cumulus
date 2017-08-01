@@ -1,3 +1,4 @@
+{% if 'interfaces' in config %}
 {% for key, iface in config.interfaces|dictsort %}
 auto {{ key }}
 iface {{ key }} {%- if iface.addr_method is defined %}
@@ -46,3 +47,4 @@ iface {{ key }} {%- if iface.addr_method is defined %}
 {% endif %}
 
 {% endfor %}
+{% endif %}
