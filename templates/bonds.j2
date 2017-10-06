@@ -12,6 +12,12 @@ iface {{ key }}
 {% if bond.bridge_pvid is defined %}
     bridge-pvid {{ bond.bridge_pvid }}
 {% endif %}
+{% if iface.bridge_allow_untagged is defined %}
+    bridge-allow-untagged {{ iface.bridge_allow_untagged }}
+{% endif %}
+{% if iface.bridge_access is defined %}
+    bridge-access {{ iface.bridge_access }}
+{% endif %}
     bond-slaves {{ bond.slaves|join(' ') }}
 {% if bond.clag_id is defined %}
     clag-id {{ bond.clag_id }}
