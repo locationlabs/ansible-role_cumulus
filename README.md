@@ -86,8 +86,8 @@ Example:
 
 ```yaml
 config:
-	interfaces:
-		swp1:
-			link:
-				down: yes
+    interfaces:
+        swp1:
+            link:
+                down: yes
 ```
