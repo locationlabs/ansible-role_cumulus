@@ -77,3 +77,17 @@ config:
 ```
 
 For more information, read [Configuring Breakout Ports](https://docs.cumulusnetworks.com/display/DOCS/Layer+1+and+Switch+Port+Attributes#Layer1andSwitchPortAttributes-breakoutConfiguringBreakoutPorts)
+
+## Administratively Down Interfaces
+
+There may be a need to administratively shutdown interfaces.  This can be accomplished by using down key with a value of yes.
+
+Example:
+
+```yaml
+config:
+	interfaces:
+		swp1:
+			link:
+				down: yes
+```
