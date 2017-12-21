@@ -1,0 +1,14 @@
+galaxy_info:
+  author: David Noriega
+  description: Manage Cumulus Linux switch configuration
+  company: Location Labs by Avast
+  license: Apache License 2.0
+  min_ansible_version: 2.4
+  # Ansible Galaxy doesn't have this platform listed
+  # See https://galaxy.ansible.com/api/v1/platforms/
+  # This should hopefully be addressed at some point by https://github.com/ansible/galaxy/issues/272
+  # platforms:
+  #   - name: CumulusLinux
+  galaxy_tags:
+    - networking
+dependencies: []
