@@ -23,7 +23,7 @@
   notify: restart switchd
   when: ansible_product_name in cumulus_breakout_allowed and config.ports is defined
 
-- include: acl.yml
+- import_tasks: acl.yml
 
 - name: Write configuration fragments
   template:
