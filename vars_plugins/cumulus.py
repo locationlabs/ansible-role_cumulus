@@ -19,7 +19,7 @@ class VarsModule(AnsibleVarsModule):
     with the same settings.
     '''
 
-    def get_vars(self, loader, path, entities):
+    def get_vars(self, loader, path, entities, cache=True):
         self._display.debug('in CumulusVarsModule')
         new_data = {}
         for entity in entities:
