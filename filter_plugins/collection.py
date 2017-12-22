@@ -4,7 +4,7 @@ __metaclass__ = type
 from ansible import errors
 
 
-def is_member_of(self, value, membership):
+def is_member_of(value, membership):
     """
     Return value if value is in given list, else raise error
 
