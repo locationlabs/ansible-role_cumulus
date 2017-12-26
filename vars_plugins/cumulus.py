@@ -38,7 +38,11 @@ class VarsModule(AnsibleVarsModule):
                                     if key.startswith('mstpctl')
                                 }
                                 if mstpctl_settings:
-                                    self._display.debug('Configuring slave interface(s): %s' % ''.join(bond['slaves']))
+                                    self._display.debug(
+                                        'Configuring slave interface(s): %s' % ''.join(
+                                            bond['slaves']
+                                        )
+                                    )
                                     for slave_iface in bond['slaves']:
                                         interfaces[slave_iface] = mstpctl_settings
 
