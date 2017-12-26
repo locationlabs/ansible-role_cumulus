@@ -1,14 +1,13 @@
-from __future__ import (absolute_import, division, print_function)
+from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 from distutils.version import LooseVersion
 from six import iteritems, itervalues
 from ansible import __version__
 from ansible.errors import AnsibleError
-from ansible.plugins.vars.host_group_vars import VarsModule as AnsibleVarsModule
-from ansible.inventory.host import Host
 from ansible.inventory.group import Group
-# from ansible.utils.vars import combine_vars
+from ansible.inventory.host import Host
+from ansible.plugins.vars.host_group_vars import VarsModule as AnsibleVarsModule
 
 if LooseVersion(__version__) < LooseVersion("2.4"):
     raise AnsibleError('Cumulus vars plugin requires Ansible 2.4 or newer')
