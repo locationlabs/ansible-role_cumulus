@@ -2,6 +2,7 @@ from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
 from distutils.version import LooseVersion
+from six import iteritems, itervalues
 from ansible import __version__
 from ansible.errors import AnsibleError
 from ansible.plugins.vars.host_group_vars import VarsModule as AnsibleVarsModule
@@ -30,11 +31,11 @@ class VarsModule(AnsibleVarsModule):
                         self._display.debug('config data found')
                         if 'bonds' in data['config'].keys():
                             interfaces = {}
-                            for bond in data['config']['bonds'].itervalues():
+                            for bond in itervalues(data['config']['bonds']):
                                 self._display.debug('bond: %s found' % bond['alias_name'])
                                 mstpctl_settings = {
                                     key: value
-                                    for key, value in bond.iteritems()
+                                    for key, value in iteritems(bond)
                                     if key.startswith('mstpctl')
                                 }
                                 if mstpctl_settings:
