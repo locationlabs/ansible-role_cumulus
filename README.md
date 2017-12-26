@@ -1,5 +1,23 @@
 # cumulus
 
+## Port Policies
+
+**NOTE:** Changing these settings will cause `switchd` to restart, which will stop network traffic
+
+It may be desirable to set a default switch-wide port configuration, such as MTU. This is simply yaml to json.
+
+Example:
+
+```yaml
+config:
+  port_policy:
+    address:
+      defaults:
+        mtu: 9216
+```
+
+For more information, see [Setting a Policy for Global System MTU](https://docs.cumulusnetworks.com/display/DOCS/Layer+1+and+Switch+Port+Attributes#Layer1andSwitchPortAttributes-SettingaPolicyforGlobalSystemMTU)
+
 ## ACLs
 
 **NOTE:** Changing these settings will cause `switchd` to restart, which will stop network traffic

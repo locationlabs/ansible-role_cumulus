@@ -25,6 +25,13 @@
 
 - import_tasks: acl.yml
 
+# TODO: Find out if leaving an empty file here will cause any problems
+- name: Configure system-wide port policies
+  copy:
+    content: "{{ config.port_policy|default(None)|to_nice_json }}"
+    dest: /etc/network/ifupdown2/policy.d/port_policy.json
+  notify: restart switchd
+
 - name: Write configuration fragments
   template:
     src="{{ item.name }}.j2"
