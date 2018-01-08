@@ -2,8 +2,6 @@
 
 ## Port Policies
 
-**NOTE:** Changing these settings will cause `switchd` to restart, which will stop network traffic
-
 It may be desirable to set a default switch-wide port configuration, such as MTU. This is simply yaml to json.
 
 Example:
