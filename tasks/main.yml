@@ -30,7 +30,7 @@
   copy:
     content: "{{ config.port_policy|default(None)|to_nice_json }}"
     dest: /etc/network/ifupdown2/policy.d/port_policy.json
-  notify: restart switchd
+  notify: reload networking
 
 - name: Write configuration fragments
   template:
