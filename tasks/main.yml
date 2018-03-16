@@ -28,7 +28,7 @@
 # TODO: Find out if leaving an empty file here will cause any problems
 - name: Configure system-wide port policies
   copy:
-    content: "{{ config.port_policy|default(None)|to_nice_json }}"
+    content: "{{ config.port_policy|default({})|to_nice_json }}"
     dest: /etc/network/ifupdown2/policy.d/port_policy.json
   notify: reload networking
 
