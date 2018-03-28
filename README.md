@@ -107,3 +107,16 @@ config:
             link:
                 down: yes
 ```
+
+## Dropping Untagged Frames
+
+On trunk ports by default untagged frames are placed into the native VLAN.  The default native VLAN
+is VLAN ID 1.  If there is a desire to prevent untagged frames from being allowed in/out of an
+interface you can use `bridge_allow_untagged`.  The behavior changes and any untagged frames will be dropped.
+
+```yaml
+config:
+  interfaces:
+    swp1:
+      bridge_allow_untagged: 'no'
+```
