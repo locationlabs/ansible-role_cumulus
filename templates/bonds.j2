@@ -19,9 +19,6 @@ iface {{ key }}
     bridge-access {{ bond.bridge_access }}
 {% endif %}
     bond-slaves {{ bond.slaves|join(' ') }}
-{% if bond.lacp_bypass_allow is defined %}
-    bond-lacp-bypass-allow {{ bond.lacp_bypass_allow }}
-{% endif %}
 {% if bond.clag_id is defined %}
     clag-id {{ bond.clag_id }}
 {% endif %}
