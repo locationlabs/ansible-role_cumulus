@@ -31,7 +31,8 @@ class VarsModule(AnsibleVarsModule):
                         if 'bonds' in data['config'].keys():
                             interfaces = {}
                             for bond in itervalues(data['config']['bonds']):
-                                self._display.debug('bond: %s found' % bond['alias_name'])
+                                # FIXME: alias_name doenst work with os-atl2
+                                self._display.debug('bond: %s found' % bond) #['alias_name'])
                                 mstpctl_settings = {
                                     key: value
                                     for key, value in iteritems(bond)
