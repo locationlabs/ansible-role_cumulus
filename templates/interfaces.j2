@@ -13,7 +13,10 @@ iface {{ key }} {%- if iface.addr_method is defined %}
     mstpctl-bpduguard {{ iface.mstpctl_bpduguard|default('no') }}
     mstpctl-portnetwork {{ iface.mstpctl_portnetwork|default('no') }}
     mstpctl-portbpdufilter {{ iface.mstpctl_bpdufilter|default('no') }}
+{% if iface.gateway is defined %}
+    gateway {{ iface.gateway }}
 {% endif %}
+    alias {{ iface.alias_name|default(key) }}
 {% if iface.bridge_pvid is defined %}
     bridge-pvid {{ iface.bridge_pvid }}
 {% endif %}
