@@ -32,6 +32,8 @@
     dest: /etc/network/ifupdown2/policy.d/port_policy.json
   notify: reload networking
 
+# IDEA: Reconsider the fragments/assemble steps, maybe assemble locally and push to get a better
+# final diff
 - name: Write configuration fragments
   template:
     src="{{ item.name }}.j2"
