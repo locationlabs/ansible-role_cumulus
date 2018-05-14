@@ -8,11 +8,6 @@ iface {{ key }} {%- if iface.addr_method is defined %}
 {% if iface.address is defined %}
     address {{ iface.address }}
 {% endif %}
-{% if '.' not in key and 'lo' != key %} {# The default values here are defaults all interfaces have #}
-    mstpctl-portadminedge {{ iface.mstpctl_portadminedge|default('no') }}
-    mstpctl-bpduguard {{ iface.mstpctl_bpduguard|default('no') }}
-    mstpctl-portnetwork {{ iface.mstpctl_portnetwork|default('no') }}
-    mstpctl-portbpdufilter {{ iface.mstpctl_bpdufilter|default('no') }}
 {% if iface.gateway is defined %}
     gateway {{ iface.gateway }}
 {% endif %}

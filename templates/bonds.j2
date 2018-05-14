@@ -25,9 +25,6 @@ iface {{ key }}
 {% if bond.mtu is defined %}
     mtu {{ bond.mtu }}
 {% endif %}
-    mstpctl-portadminedge {{ bond.mstpctl_portadminedge|default('no') }}
-    mstpctl-bpduguard {{ bond.mstpctl_bpduguard|default('no') }}
-    mstpctl-portnetwork {{ bond.mstpctl_portnetwork|default('no') }}
     bond-miimon 100
     bond-lacp-rate 1
     bond-min-links 1
