@@ -24,6 +24,18 @@ iface {{ key }} {%- if iface.addr_method is defined %}
 {% if iface.bridge_access is defined %}
     bridge-access {{ iface.bridge_access }}
 {% endif %}
+{% if iface.mstpctl_portadminedge is defined %}
+    mstpctl-portadminedge {{ iface.mstpctl_portadminedge }}
+{% endif %}
+{% if iface.mstpctl_bpduguard is defined %}
+    mstpctl-bpduguard {{ iface.mstpctl_bpduguard }}
+{% endif %}
+{% if iface.mstpctl_portnetwork is defined %}
+    mstpctl-portnetwork {{ iface.mstpctl_portnetwork }}
+{% endif %}
+{% if iface.mstpctl_bpdufilter| is defined %}
+    mstpctl-bpdufilter {{ iface.mstpctl_bpdufilter }}
+{% endif %}
 {% if iface.clagd_enable is defined %}
     clagd-enable yes
     clagd-peer-ip {{ iface.clagd_peer_ip }}
