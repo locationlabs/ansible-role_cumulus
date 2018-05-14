@@ -2,7 +2,7 @@
 {% for key, bond in config.bonds|dictsort %}
 auto {{ key }}
 iface {{ key }}
-    alias {{ bond.alias_name }}
+    alias {{ bond.alias_name|default(key) }}
 {% if bond.address is defined %}
     address {{ bond.address }}
 {% endif %}

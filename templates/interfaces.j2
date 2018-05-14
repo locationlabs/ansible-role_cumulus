@@ -8,7 +8,6 @@ iface {{ key }} {%- if iface.addr_method is defined %}
 {% if iface.address is defined %}
     address {{ iface.address }}
 {% endif %}
-    alias {{ iface.alias_name|default(key) }}
 {% if '.' not in key and 'lo' != key %} {# The default values here are defaults all interfaces have #}
     mstpctl-portadminedge {{ iface.mstpctl_portadminedge|default('no') }}
     mstpctl-bpduguard {{ iface.mstpctl_bpduguard|default('no') }}

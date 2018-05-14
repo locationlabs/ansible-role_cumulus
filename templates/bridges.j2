@@ -2,7 +2,7 @@
 {% for key, bridge in config.bridges|dictsort %}
 auto {{ key }}
 iface {{ key }}
-    alias {{ bridge.alias_name }}
+    alias {{ bridge.alias_name|default(key) }}
 {% if bridge.address is defined %}
     address {{ bridge.address }}
 {% endif %}
