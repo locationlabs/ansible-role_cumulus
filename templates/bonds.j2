@@ -18,17 +18,17 @@ iface {{ key }}
 {% if bond.bridge_access is defined %}
     bridge-access {{ bond.bridge_access }}
 {% endif %}
-{% if iface.mstpctl_portadminedge is defined %}
-    mstpctl-portadminedge {{ iface.mstpctl_portadminedge }}
+{% if bond.mstpctl_portadminedge is defined %}
+    mstpctl-portadminedge {{ bond.mstpctl_portadminedge }}
 {% endif %}
-{% if iface.mstpctl_bpduguard is defined %}
-    mstpctl-bpduguard {{ iface.mstpctl_bpduguard }}
+{% if bond.mstpctl_bpduguard is defined %}
+    mstpctl-bpduguard {{ bond.mstpctl_bpduguard }}
 {% endif %}
-{% if iface.mstpctl_portnetwork is defined %}
-    mstpctl-portnetwork {{ iface.mstpctl_portnetwork }}
+{% if bond.mstpctl_portnetwork is defined %}
+    mstpctl-portnetwork {{ bond.mstpctl_portnetwork }}
 {% endif %}
-{% if iface.mstpctl_bpdufilter is defined %}
-    mstpctl-bpdufilter {{ iface.mstpctl_bpdufilter }}
+{% if bond.mstpctl_bpdufilter is defined %}
+    mstpctl-bpdufilter {{ bond.mstpctl_bpdufilter }}
 {% endif %}
     bond-slaves {{ bond.slaves|join(' ') }}
 {% if bond.clag_id is defined %}
