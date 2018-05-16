@@ -20,7 +20,9 @@
     regexp: "^{{item.key}}="
     line: "{{ item.key }}={{ item.value|is_member_of(cumulus_breakout_values) }}"
   with_dict: "{{ config.ports|default({}) }}"
-  notify: restart switchd
+  notify:
+    - restart switchd
+    - reload networking
   when: ansible_product_name in cumulus_breakout_allowed and config.ports is defined
 
 - import_tasks: acl.yml

@@ -1,8 +1,8 @@
-- name: reload networking
-  command: /sbin/ifreload -a
-
 - name: restart switchd
   command: systemctl restart switchd
+
+- name: reload networking
+  command: /sbin/ifreload -a
 
 - name: update acl
   command: /usr/cumulus/bin/cl-acltool -i
