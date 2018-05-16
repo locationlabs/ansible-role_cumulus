@@ -27,7 +27,7 @@ iface {{ key }}
 {% if iface.mstpctl_portnetwork is defined %}
     mstpctl-portnetwork {{ iface.mstpctl_portnetwork }}
 {% endif %}
-{% if iface.mstpctl_bpdufilter| is defined %}
+{% if iface.mstpctl_bpdufilter is defined %}
     mstpctl-bpdufilter {{ iface.mstpctl_bpdufilter }}
 {% endif %}
     bond-slaves {{ bond.slaves|join(' ') }}
