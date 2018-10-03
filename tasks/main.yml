@@ -1,3 +1,8 @@
+- name: Check interface configuration
+  assert:
+    that: config | validate_interfaces
+    msg: "Invalid interfaces detected!"
+
 - name: Enable/Disable DOS protection
   lineinfile:
     dest: /etc/cumulus/datapath/traffic.conf
