@@ -1,7 +1,7 @@
 - name: Check interface configuration
   assert:
     that: config | validate_interfaces
-    msg: "validate_interfaces test fail - check your interface names"
+    msg: "Invalid interface name detected: longer than 15 characters or starts with a number"
 
 - name: Enable/Disable DOS protection
   lineinfile:
