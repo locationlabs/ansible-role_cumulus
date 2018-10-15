@@ -1,7 +1,7 @@
 - name: Check interface configuration
   assert:
     that: config | validate_interfaces
-    msg: "Invalid interfaces detected!"
+    msg: "validate_interfaces test fail - check your interface names"
 
 - name: Enable/Disable DOS protection
   lineinfile:
