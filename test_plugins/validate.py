@@ -12,7 +12,7 @@ def validate_interfaces(configuration):
     * interface name does not start with a number
     """
     for config_section in ("bonds", "interfaces"):
-        for interface in config[config_section]:
+        for interface in configuration[config_section]:
             if len(interface) > 15 :
                 return False
             elif interface[0].isdigit():
