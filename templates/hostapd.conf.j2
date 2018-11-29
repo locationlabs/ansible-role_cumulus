@@ -1,0 +1,32 @@
+# {{ ansible_managed }}
+eap_server=0
+ieee8021x=1
+driver=wired
+interfaces={{ config|dot1x_interfaces|join(',') }}
+mab_interfaces={{ config|dot1x_interfaces('dot1x_mab')|join(',') }}
+parking_vlan_interfaces={{ config|dot1x_interfaces('dot1x_parking')|join(',') }}
+parking_vlan_id={{ config.dot1x.parking_vlan_id|default('') }}
+mab_activation_delay={{ config.dot1x.mab_activation_delay|default('30') }}
+eap_reauth_period={{ config.dot1x.eap_reauth_period|default('0') }}
+ctrl_interface=/var/run/hostapd
+nas_identifier=localhost
+auth_server_addr={{ config.dot1x.server_ip|default('') }}
+auth_server_port={{ config.dot1x.authentication_port|default('1812') }}
+auth_server_shared_secret={{ config.dot1x.shared_secret|default('') }}
+acct_server_addr={{ config.dot1x.server_ip|default('') }}
+acct_server_port={{ config.dot1x.accounting_port|default('1813') }}
+acct_server_shared_secret={{ config.dot1x.shared_secret|default('') }}
+{% if config.dot1x.client_source_ip is defined %}
+radius_client_addr={{ config.dot1x.client_source_ip }}
+{% endif %}
+{% if config.dot1x.server_ip is defined %}
+{% if config.dot1x.dynamic_vlan is defined %}
+dynamic_vlan={{ (config.dot1x.dynamic_vlan|lower == 'required')|ternary('2', '1') }}
+{% else %}
+dynamic_vlan=0
+{% endif %}
+radius_das_port=
+radius_das_time_window=300
+radius_das_require_event_timestamp=1
+radius_das_require_message_authenticator=1
+{% endif %}

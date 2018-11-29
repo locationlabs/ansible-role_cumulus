@@ -1,0 +1,14 @@
+# This covers the case where a switch was upgraded in place pre 3.3 as this package was only
+# included in the OS image after 3.3
+- name: Check hostapd is installed
+  apt:
+    name: hostapd
+    state: present
+
+# The NCLU is nice enough to make distinction between dot1x changes that only require a
+# restart(deauthorize existing connections) vs reload, but that would be difficult to do here
+- name: Configure hostapd
+  template:
+    src: hostapd.conf.j2
+    dest: /etc/hostapd.conf
+  notify: restart hostapd

@@ -6,3 +6,8 @@
 
 - name: update acl
   command: /usr/cumulus/bin/cl-acltool -i
+
+- name: restart hostapd
+  systemd:
+    name: hostapd
+    state: restarted

@@ -54,6 +54,9 @@ iface {{ key }} {%- if iface.addr_method is defined %}
 {% if iface.mtu is defined %}
     mtu {{ iface.mtu }}
 {% endif %}
+{% if iface.dot1x is defined or iface.dot1x_parking is defined or iface.dot1x_mab is defined %}
+    bridge-learning off
+{% endif %}
 
 {% endfor %}
 {% endif %}

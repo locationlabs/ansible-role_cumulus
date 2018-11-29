@@ -32,6 +32,8 @@
 
 - import_tasks: acl.yml
 
+- import_tasks: 802-1x.yml
+
 # TODO: Find out if leaving an empty file here will cause any problems
 - name: Configure system-wide port policies
   copy:

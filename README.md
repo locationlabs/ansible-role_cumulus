@@ -16,6 +16,44 @@ config:
 
 For more information, see [Setting a Policy for Global System MTU](https://docs.cumulusnetworks.com/display/DOCS/Layer+1+and+Switch+Port+Attributes#Layer1andSwitchPortAttributes-SettingaPolicyforGlobalSystemMTU)
 
+## 802.1X Port Authentication
+
+**NOTE:** Changing 802.1X settings or port attributes will restart the hostapd daemon, which resets existing authorized sessions
+
+Currently only a single RAIDUS server is supported
+
+Authentication server configuration options:
+
+```yaml
+config:
+  dot1x:
+    server_ip: 'x.x.x.x' # RADIUS server - Required
+    authentication_port: 1812 # Default
+    shared_secret: 'xxxx' # RADIUS shared secret - Required
+    accounting_port: 1813 # Default
+    client_source_ip: 'y.y.y.y' # Optional
+    mab_activation_delay: 30 # Default - Cumulus only supports a value between 5 and 30
+    eap_reauth_period: 0 # Default
+    parking_vlan_id: 0000 # Optional
+    # To enable dynamic vlan support
+    dynamic_vlan:
+    # To require dynamic vlan assignment
+    # dynamic_vlan: required
+```
+
+To enable 802.1X auth on a port, add ONLY one of the following options to the port configuration:
+
+```yaml
+config:
+  swp1:
+    dot1x: # Enable 802.1X
+    # dot1x-mab: # Enable MAC address auth bypass
+    # dot1x-parking: # Enable parking vlan assignment for failed auth case
+```
+
+For more information, see [802.1X Interfaces](https://docs.cumulusnetworks.com/display/DOCS/802.1X+Interfaces)
+
+
 ## ACLs
 
 **NOTE:** Changing these settings will cause `switchd` to restart, which will stop network traffic
@@ -102,10 +140,10 @@ Example:
 
 ```yaml
 config:
-    interfaces:
-        swp1:
-            link:
-                down: yes
+  interfaces:
+    swp1:
+      link:
+        down: yes
 ```
 
 ## Dropping Untagged Frames
