@@ -1,7 +1,12 @@
-- name: Check interface configuration
+- name: Configuration validation checks
   assert:
-    that: config | validate_interfaces
-    msg: "Invalid interface name detected: longer than 15 characters or starts with a number"
+    that: "{{ item.that }}"
+    msg: "{{ item.msg }}"
+  with_items:
+    - that: "{{ config | validate_interfaces }}"
+      msg: "Invalid interface name detected: longer than 15 characters or starts with a number"
+    - that: "{{ config | validate_802_1x }}"
+      msg: "Invalid 802.1X configuration"
 
 - name: Enable/Disable DOS protection
   lineinfile:
