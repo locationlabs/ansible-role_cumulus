@@ -1,4 +1,5 @@
 # {{ ansible_managed }}
+{% if config.dot1x is defined %}
 eap_server=0
 ieee8021x=1
 driver=wired
@@ -29,4 +30,23 @@ radius_das_port=
 radius_das_time_window=300
 radius_das_require_event_timestamp=1
 radius_das_require_message_authenticator=1
+{% endif %}
+{% else %}
+eap_server=0
+ieee8021x=1
+driver=wired
+interfaces=
+mab_interfaces=
+parking_vlan_interfaces=
+parking_vlan_id=
+mab_activation_delay=30
+eap_reauth_period=0
+ctrl_interface=/var/run/hostapd
+nas_identifier=localhost
+auth_server_addr=
+auth_server_port=1812
+auth_server_shared_secret=
+acct_server_addr=
+acct_server_port=1813
+acct_server_shared_secret=
 {% endif %}
