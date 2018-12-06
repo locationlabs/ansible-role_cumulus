@@ -3,6 +3,12 @@
     that: config | validate_interfaces
     msg: "Invalid interface name detected: longer than 15 characters or starts with a number"
 
+- name: Configure NTP
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+  notify: restart ntp
+
 - name: Enable/Disable DOS protection
   lineinfile:
     dest: /etc/cumulus/datapath/traffic.conf

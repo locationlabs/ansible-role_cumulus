@@ -1,5 +1,10 @@
 # cumulus
 
+## NTP
+
+`cumulus_ntp_servers`: List of ntp servers to use - Default: Cumulus ntp servers
+`cumulus_ntp_interface`: Interface to listen on for ntp - Default eth0
+
 ## Port Policies
 
 It may be desirable to set a default switch-wide port configuration, such as MTU. This is simply yaml to json.

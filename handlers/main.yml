@@ -6,3 +6,8 @@
 
 - name: update acl
   command: /usr/cumulus/bin/cl-acltool -i
+
+- name: restart ntp
+  systemd:
+    name: ntp
+    state: restarted
