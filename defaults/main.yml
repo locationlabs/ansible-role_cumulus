@@ -16,3 +16,9 @@ cumulus_datapath_conf:
   - { check: "icmpv6_length", value: "true" }
   - { check: "ipv6_min_frag", value: "true" }
 cumulus_acl_non_atomic_update_mode: false
+cumulus_ntp_servers:
+  - 0.cumulusnetworks.pool.ntp.org
+  - 1.cumulusnetworks.pool.ntp.org
+  - 2.cumulusnetworks.pool.ntp.org
+  - 3.cumulusnetworks.pool.ntp.org
+cumulus_ntp_interface: eth0

@@ -8,6 +8,12 @@
     - that: "{{ config | validate_802_1x }}"
       msg: "Invalid 802.1X configuration"
 
+- name: Configure NTP
+  template:
+    src: ntp.conf.j2
+    dest: /etc/ntp.conf
+  notify: restart ntp
+
 - name: Enable/Disable DOS protection
   lineinfile:
     dest: /etc/cumulus/datapath/traffic.conf
