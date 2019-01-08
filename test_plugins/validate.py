@@ -11,7 +11,7 @@ def validate_interfaces(configuration):
     * interface name is 15 characters or less
     * interface name does not start with a number
     """
-    for config_section in ("bonds", "interfaces"):
+    for config_section in [ s for s in ("bonds", "interfaces") if s in configuration.keys() ]:
         for interface in configuration[config_section]:
             if len(interface) > 15 :
                 return False
