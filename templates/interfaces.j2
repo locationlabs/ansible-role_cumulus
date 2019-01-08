@@ -34,7 +34,7 @@ iface {{ key }} {%- if iface.addr_method is defined %}
     mstpctl-portnetwork {{ iface.mstpctl_portnetwork }}
 {% endif %}
 {% if iface.mstpctl_bpdufilter is defined %}
-    mstpctl-bpdufilter {{ iface.mstpctl_bpdufilter }}
+    mstpctl-portbpdufilter {{ iface.mstpctl_bpdufilter }}
 {% endif %}
 {% if iface.clagd_enable is defined %}
     clagd-enable yes
