@@ -37,6 +37,11 @@ iface {{ key }}
 {% if bond.mtu is defined %}
     mtu {{ bond.mtu }}
 {% endif %}
+{% if bond.link is defined %}
+{% for link_item, link_value in bond.link|dictsort %}
+    link-{{ link_item }} {{ link_value }}
+{% endfor %}
+{% endif %}
     bond-miimon 100
     bond-lacp-rate 1
     bond-min-links 1
