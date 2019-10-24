@@ -24,7 +24,7 @@ class VarsModule(AnsibleVarsModule):
     '''
 
     def get_vars(self, loader, path, entities, cache=True):
-        self._display.debug('in cumulus get_vars()')
+        display.debug('in cumulus get_vars()')
         new_data = {}
         for entity in entities:
             if isinstance(entity, Host) or isinstance(entity, Group):
@@ -62,5 +62,5 @@ class VarsModule(AnsibleVarsModule):
                                 display.debug('slave interfaces configured')
                                 new_data = {'config': {'interfaces': interfaces}}
 
-        self._display.debug('done with get_vars()')
+        display.debug('done with get_vars()')
         return new_data
