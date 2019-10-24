@@ -1,5 +1,14 @@
 # cumulus
 
+## Vars plugin
+
+This role employs the use of a `vars_plugin` for slave interfaces used in a bond to inherit
+`mstpctl` parameters from the bond interface, as well as set their `alias_name` to
+_Master:<bond_name>_. 
+
+NOTE: Ansible variable precedence means if one sets one of these attributes of an interface in the
+host_vars, that will override the vars plugin.
+
 ## NTP
 
 `cumulus_ntp_servers`: List of ntp servers to use - Default: Cumulus ntp servers
