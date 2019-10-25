@@ -1,6 +1,8 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
+from six import itervalues, viewkeys
+
 
 def valid_interface(configuration):
     """Validate interface configuration
@@ -9,7 +11,7 @@ def valid_interface(configuration):
     * interface name is 15 characters or less
     * interface name does not start with a number
     """
-    for config_section in [s for s in ("bonds", "interfaces") if s in configuration.keys()]:
+    for config_section in [s for s in ("bonds", "interfaces") if s in viewkeys(configuration)]:
         for interface in configuration[config_section]:
             if len(interface) > 15:
                 return False
@@ -36,8 +38,8 @@ def valid_802_1x(configuration):
                 return False
 
         dot1x_filter = set(['dot1x', 'dot1x_mab', 'dot1x_parking'])
-        for interface in configuration["interfaces"].itervalues():
-            iface_params = set(interface.keys())
+        for interface in itervalues(configuration["interfaces"]):
+            iface_params = set(viewkeys(interface))
             if len(dot1x_filter.intersection(iface_params)) > 1:
                 return False
     else:

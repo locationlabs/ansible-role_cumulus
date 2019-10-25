@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
 from distutils.version import LooseVersion
-from six import iteritems, itervalues, iterkeys
+from six import iteritems, itervalues, iterkeys, viewkeys
 from ansible import __version__
 from ansible.errors import AnsibleError
 from ansible.inventory.group import Group
@@ -29,9 +29,9 @@ class VarsModule(AnsibleVarsModule):
             if isinstance(entity, Host) or isinstance(entity, Group):
                 host_group_vars_data = super(VarsModule, self).get_vars(loader, path, entities)
                 if isinstance(host_group_vars_data, dict):
-                    if 'config' in host_group_vars_data.keys():
+                    if 'config' in viewkeys(host_group_vars_data):
                         self._display.debug('config data found')
-                        if 'bonds' in host_group_vars_data['config'].keys():
+                        if 'bonds' in viewkeys(host_group_vars_data['config']):
                             interfaces = {}
                             # This works because of explaination at
                             # https://docs.python.org/2/library/stdtypes.html#dict.items and six
