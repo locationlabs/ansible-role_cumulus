@@ -8,10 +8,9 @@ from ansible.errors import AnsibleError
 from ansible.inventory.group import Group
 from ansible.inventory.host import Host
 from ansible.plugins.vars.host_group_vars import VarsModule as AnsibleVarsModule
-from ansible.utils.display import Display
 from ansible.utils.vars import combine_vars
 
-display = Display()
+
 if LooseVersion(__version__) < LooseVersion("2.4"):
     raise AnsibleError('Cumulus vars plugin requires Ansible 2.4 or newer')
 
@@ -24,14 +23,14 @@ class VarsModule(AnsibleVarsModule):
     '''
 
     def get_vars(self, loader, path, entities, cache=True):
-        display.debug('in cumulus get_vars()')
+        self._display.debug('in cumulus get_vars()')
         new_data = {}
         for entity in entities:
             if isinstance(entity, Host) or isinstance(entity, Group):
                 host_group_vars_data = super(VarsModule, self).get_vars(loader, path, entities)
                 if isinstance(host_group_vars_data, dict):
                     if 'config' in host_group_vars_data.keys():
-                        display.debug('config data found')
+                        self._display.debug('config data found')
                         if 'bonds' in host_group_vars_data['config'].keys():
                             interfaces = {}
                             # This works because of explaination at
@@ -39,7 +38,7 @@ class VarsModule(AnsibleVarsModule):
                             # is just a wrapper around them
                             for bond, bond_name in zip(itervalues(host_group_vars_data['config']['bonds']),
                                                        iterkeys(host_group_vars_data['config']['bonds'])):
-                                display.debug('bond: %s found' % bond_name)
+                                self._display.debug('bond: %s found' % bond_name)
                                 mstpctl_settings = {
                                     key: value
                                     for key, value in iteritems(bond)
@@ -49,7 +48,7 @@ class VarsModule(AnsibleVarsModule):
                                 if 'slaves' in bond:
                                     for slave_iface in bond['slaves']:
                                         if mstpctl_settings:
-                                            display.debug(
+                                            self._display.debug(
                                                 'Configuring slave interface(s): %s' % ' '.join(
                                                     bond['slaves']
                                                 )
@@ -59,8 +58,8 @@ class VarsModule(AnsibleVarsModule):
                                             interfaces[slave_iface] = {'alias_name': 'Master:%s' % bond_name}
 
                             if interfaces:
-                                display.debug('slave interfaces configured')
+                                self._display.debug('slave interfaces configured')
                                 new_data = {'config': {'interfaces': interfaces}}
 
-        display.debug('done with get_vars()')
+        self._display.debug('done with get_vars()')
         return new_data
