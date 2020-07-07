@@ -11,4 +11,5 @@ iface lo inet loopback
 {% if 'eth0' not in config.interfaces|default({}) %}
 auto eth0
 iface eth0 inet dhcp
+    mtu 1500
 {% endif %}
