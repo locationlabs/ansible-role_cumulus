@@ -27,7 +27,7 @@ iface eth0 inet dhcp
 
 ## Port Policies
 
-It may be desirable to set a default switch-wide port configuration, such as MTU. This is simply yaml to json.  Note, setting this example policy will apply the MTU 9216 to _all_ ports on the switch that are not explicitly set on the interface config.
+It may be desirable to set a default switch-wide port configuration, such as MTU. This is simply yaml to json.  Note, setting this example policy will apply the MTU 9216 to _all_ ports on the switch that do not have an MTU explicitly set on the interface config.
 
 Example:
 
