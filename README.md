@@ -4,7 +4,7 @@
 
 This role employs the use of a `vars_plugin` for slave interfaces used in a bond to inherit
 `mstpctl` parameters from the bond interface, as well as set their `alias_name` to
-_Master:<bond_name>_. 
+_Master:<bond_name>_.
 
 NOTE: Ansible variable precedence means if one sets one of these attributes of an interface in the
 host_vars, that will override the vars plugin.
@@ -14,9 +14,20 @@ host_vars, that will override the vars plugin.
 `cumulus_ntp_servers`: List of ntp servers to use - Default: Cumulus ntp servers
 `cumulus_ntp_interface`: Interface to listen on for ntp - Default eth0
 
+## Default management interface
+
+This role uses the following default configuration for the dedicated management port when that port is `eth0`. Note, some Cumulus supported hardware uses `eth1` for the management interface, it is up to the user to know this and edit the default if needed. The configuration can be found in `/templates/header.j2`. The default will result in the following being put in `/etc/network/interfaces` unless `eth0` is defined elsewhere:  
+
+```
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+    mtu 1500
+```
+
 ## Port Policies
 
-It may be desirable to set a default switch-wide port configuration, such as MTU. This is simply yaml to json.
+It may be desirable to set a default switch-wide port configuration, such as MTU. This is simply yaml to json.  Note, setting this example policy will apply the MTU 9216 to _all_ ports on the switch that are not explicitly set on the interface config.
 
 Example:
 
@@ -25,7 +36,7 @@ config:
   port_policy:
     address:
       defaults:
-        mtu: 9216
+        mtu: "9216"
 ```
 
 For more information, see [Setting a Policy for Global System MTU](https://docs.cumulusnetworks.com/display/DOCS/Layer+1+and+Switch+Port+Attributes#Layer1andSwitchPortAttributes-SettingaPolicyforGlobalSystemMTU)
