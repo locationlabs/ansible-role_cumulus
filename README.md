@@ -28,7 +28,7 @@ iface eth0 inet dhcp
 ## Port Policies
 
 It may be desirable to set a default switch-wide port configuration, such as MTU. This is simply yaml to json.  Note, setting this example policy will apply the MTU 9216 to _all_ ports on the switch that do not have an MTU explicitly set on the interface config.
-
+NOTE: This role by default sets an MTU of 1500 on the `eth0` interface to protect against eth0 becoming inoperable if a global MTU above 1500 is set on hardware where `eth0` is not capable of going above 1500, ie Dell S3048 or Dell Z9100. If one defines this interface elsewhere via `config.interfaces` one may override the MTU to the desired size or remove it altogether.
 Example:
 
 ```yaml
